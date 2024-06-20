@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../public/css/main.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" href="/lego-man.png" type="image/png" sizes="16x16" />
     <title>Document</title>
   </head>
   <body>
     <div class="navbar mx-auto max-w-screen-xl md:px-20 sticky z-50">
       <div class="flex-1">
-        <img style="height: 60px" src="../public/lego-man.png" alt="logo" />
+        <img style="height: 60px" src="/lego-man.png" alt="logo" />
         <a href="/" class="btn btn-ghost text-xl"> Lego Collection</a>
       </div>
       <div class="flex-none">
@@ -21,7 +22,7 @@
               <ul class="p-2 bg-base-100 w-[140px] rounded-t-none">
                 <li><a href="/lego/sets?theme=Technic">Technic</a></li>
                 <li>
-                  <a href="/lego/sets?theme=Bricks & More">Bricks & More</a>
+                  <a href="/lego/sets?theme=Supplemental">Supplemental</a>
                 </li>
                 <li>
                   <a href="/lego/sets?theme=Construction">Construction</a>
@@ -36,7 +37,8 @@
 
           <!-- sun icon -->
           <svg
-            class="swap-off fill-current w-10 h-10"
+            onClick="toggleTheme()"
+            class="swap-on fill-current w-10 h-10"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -47,7 +49,8 @@
 
           <!-- moon icon -->
           <svg
-            class="swap-on fill-current w-10 h-10"
+            onClick="toggleTheme()"
+            class="swap-off fill-current w-10 h-10"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -64,14 +67,25 @@
       <div class="hero min-h-screen bg-base-200">
         <div class="hero-content text-center">
           <div class="max-w-md">
-            <h1 class="text-5xl font-bold">About</h1>
+            <h1 class="text-5xl font-bold">About me</h1>
             <p class="py-6">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error
-              omnis nisi, iusto quas deleniti perferendis velit molestiae facere
-              voluptate fugit fugiat in ea? Delectus quod impedit atque ipsam.
-              Reiciendis, ipsam. Provident cupiditate voluptatem et in. Quaerat
-              fugiat ut assumenda excepturi exercitationem quasi. In deleniti
-              eaque aut repudiandae et a id nisi.
+              I am from Ghana, where my favorite food is fufu and groundnut
+              soup. Back home, I work as a pharmacist, but I am currently
+              studying computer programming at Seneca Polytechnic in Canada. I
+              have a diverse set of skills including React, Express, MongoDB,
+              PostgreSQL, C++, HTML, JavaScript, and React Native. Additionally,
+              I am passionate about technology and enjoy exploring new tools and
+              frameworks to enhance my development capabilities.
+              <br />
+              <br />
+              This semester, I am working on my WEB322 assignment, a project
+              built using Express, JavaScript, HTML, and styled with Tailwind
+              CSS and DaisyUI. This project will span the entire semester, with
+              continuous development and improvements. It aims to showcase my
+              ability to integrate different technologies and create a robust
+              web application. I am excited about this opportunity to apply my
+              knowledge in a practical setting and to further expand my
+              programming skills.
             </p>
           </div>
         </div>
@@ -81,8 +95,21 @@
     <!-- Footer -->
     <footer class="footer footer-center p-4 bg-base-300 text-base-content">
       <aside>
-        <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright © 2024 - Made by Obese with ❤️</p>
       </aside>
     </footer>
+    <script>
+      function toggleTheme() {
+        // Get reference to the body element
+        const body = document.body;
+
+        // Toggle the data-theme attribute
+        if (body.getAttribute("data-theme") === "cupcake") {
+          body.setAttribute("data-theme", "night");
+        } else {
+          body.setAttribute("data-theme", "cupcake");
+        }
+      }
+    </script>
   </body>
 </html>

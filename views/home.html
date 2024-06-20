@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../public/css/main.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" href="/lego-man.png" type="image/png" sizes="16x16" />
     <title>Lego Collection</title>
   </head>
   <body data-theme="cupcake">
     <!-- Navbar -->
     <div class="navbar mx-auto max-w-screen-xl md:px-20 sticky z-50">
       <div class="flex-1">
-        <img style="height: 60px" src="../public/lego-man.png" alt="logo" />
+        <img style="height: 60px" src="/lego-man.png" alt="logo" />
         <a href="/" class="btn btn-ghost text-xl"> Lego Collection</a>
       </div>
       <div class="flex-none">
@@ -37,7 +38,8 @@
 
           <!-- sun icon -->
           <svg
-            class="swap-off fill-current w-10 h-10"
+            onClick="toggleTheme()"
+            class="swap-on fill-current w-10 h-10"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -48,7 +50,8 @@
 
           <!-- moon icon -->
           <svg
-            class="swap-on fill-current w-10 h-10"
+            onClick="toggleTheme()"
+            class="swap-off fill-current w-10 h-10"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -68,13 +71,15 @@
           class="max-w-sm rounded-lg shadow-2xl"
         />
         <div>
-          <h1 class="text-5xl font-bold">Under Construction...</h1>
+          <h1 class="text-5xl font-bold">
+            Transform your old LEGO® bricks into amazing new creations.
+          </h1>
           <p class="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Join the Rebuilding Revolution: Turn your LEGO® collection into
+            endless possibilities. Discover a world of new builds with
+            Rebrickable's free community features.
           </p>
-          <button class="btn btn-primary">Explore more... ></button>
+          <a href="/lego/sets" class="btn btn-primary">Explore more ></a>
         </div>
       </div>
     </div>
@@ -89,76 +94,85 @@
         <div class="card w-96 bg-base-100 shadow-xl block">
           <figure>
             <img
-              src="https://images.unsplash.com/photo-1630476504846-64c6994ecd54?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTMwfHxsZWdvfGVufDB8fDB8fHww"
+              class="rounded-lg"
+              src="https://cdn.rebrickable.com/media/sets/0011-2.jpg"
               alt="lego"
             />
           </figure>
           <div class="card-body">
             <h2 class="card-title">
-              Shoes!
-              <div class="badge badge-secondary">NEW</div>
+              Town Mini-Figures
+              <div class="badge badge-secondary">Classic Town</div>
             </h2>
             <p>If a dog chews shoes whose shoes does he choose?</p>
             <div class="card-actions justify-end">
-              <div class="badge badge-outline">Fashion</div>
-              <div class="badge badge-outline">Products</div>
+              <a href="/lego/sets/0011-2" class="btn btn-primary"
+                >View Set Details</a
+              >
             </div>
           </div>
         </div>
         <div class="card w-96 bg-base-100 shadow-xl block">
           <figure>
             <img
-              src="https://images.unsplash.com/photo-1630476504846-64c6994ecd54?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTMwfHxsZWdvfGVufDB8fDB8fHww"
+              class="rounded-lg"
+              src="https://cdn.rebrickable.com/media/sets/0003977811-1.jpg"
               alt="lego"
             />
           </figure>
           <div class="card-body">
             <h2 class="card-title">
-              Lego!
-              <div class="badge badge-secondary">NEW</div>
+              Ninjago: Book of Adventures
+              <div class="badge badge-secondary w-80 text-[10px]">
+                Activity Books with LEGO Parts
+              </div>
             </h2>
             <p>If a dog chews shoes whose shoes does he choose?</p>
             <div class="card-actions justify-end">
-              <div class="badge badge-outline">Fashion</div>
-              <div class="badge badge-outline">Products</div>
+              <a href="/lego/sets/0003977811-1" class="btn btn-primary"
+                >View Set Details</a
+              >
             </div>
           </div>
         </div>
         <div class="card w-96 bg-base-100 shadow-xl block">
           <figure>
             <img
-              src="https://images.unsplash.com/photo-1630476504846-64c6994ecd54?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTMwfHxsZWdvfGVufDB8fDB8fHww"
+              class="rounded-lg"
+              src="https://cdn.rebrickable.com/media/sets/002-1.jpg"
               alt="lego"
             />
           </figure>
           <div class="card-body">
             <h2 class="card-title">
-              Lego!
-              <div class="badge badge-secondary">NEW</div>
+              4.5V Samsonite Gears Motor Set
+              <div class="badge badge-secondary">Samsonite</div>
             </h2>
             <p>If a dog chews shoes whose shoes does he choose?</p>
             <div class="card-actions justify-end">
-              <div class="badge badge-outline">Fashion</div>
-              <div class="badge badge-outline">Products</div>
+              <a href="/lego/sets/002-1" class="btn btn-primary"
+                >View Set Details</a
+              >
             </div>
           </div>
         </div>
         <div class="card w-96 bg-base-100 shadow-xl">
           <figure>
             <img
-              src="https://images.unsplash.com/photo-1630476504846-64c6994ecd54?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTMwfHxsZWdvfGVufDB8fDB8fHww"
+              src="https://cdn.rebrickable.com/media/sets/0011-3.jpg"
               alt="Shoes"
             />
           </figure>
           <div class="card-body">
             <h2 class="card-title">
-              Shoes!
-              <div class="badge badge-secondary">NEW</div>
+              Castle 2 for 1 Bonus <br />Offer
+              <div class="badge badge-secondary">Lion Knights</div>
             </h2>
             <p>If a dog chews shoes whose shoes does he choose?</p>
             <div class="card-actions justify-end">
-              <div class="badge badge-outline">Fashion</div>
-              <div class="badge badge-outline">Products</div>
+              <a href="/lego/sets/001-1" class="btn btn-primary"
+                >View Set Details</a
+              >
             </div>
           </div>
         </div>
@@ -166,12 +180,23 @@
     </div>
 
     <!-- Footer -->
-
     <footer class="footer footer-center p-4 bg-base-300 text-base-content">
       <aside>
-        <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright © 2024 - Made by Obese with ❤️</p>
       </aside>
     </footer>
-    <script></script>
+    <script>
+      function toggleTheme() {
+        // Get reference to the body element
+        const body = document.body;
+
+        // Toggle the data-theme attribute
+        if (body.getAttribute("data-theme") === "cupcake") {
+          body.setAttribute("data-theme", "night");
+        } else {
+          body.setAttribute("data-theme", "cupcake");
+        }
+      }
+    </script>
   </body>
 </html>

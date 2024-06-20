@@ -19,7 +19,7 @@ const app = express();
 
 const API_PORT = process.env.PORT || 8000;
 
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "public")));
 //route
 app.get("/", async (req, res) => {
   await res.sendFile(path.join(__dirname, "views", "/home.html"));
@@ -54,7 +54,7 @@ app.get("/lego/sets", async (req, res) => {
 });
 
 //GET LEGO SETS NUM-DEMO
-app.get("/lego/sets/:num-demo", async (req, res) => {
+app.get("/lego/sets/:set_num", async (req, res) => {
   legoData.initialize().then(() => {
     legoData
       .getSetByNum(req.params.set_num)
