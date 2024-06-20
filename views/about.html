@@ -100,16 +100,17 @@
     </footer>
     <script>
       function toggleTheme() {
-        // Get reference to the body element
         const body = document.body;
-
-        // Toggle the data-theme attribute
-        if (body.getAttribute("data-theme") === "cupcake") {
-          body.setAttribute("data-theme", "night");
-        } else {
-          body.setAttribute("data-theme", "cupcake");
-        }
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "cupcake" ? "night" : "cupcake";
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
       }
+      function setInitialTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        document.body.setAttribute("data-theme", savedTheme || "cupcake");
+      }
+      document.addEventListener("DOMContentLoaded", setInitialTheme);
     </script>
   </body>
 </html>
