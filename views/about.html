@@ -107,8 +107,8 @@
         localStorage.setItem("theme", newTheme);
       }
 
-      function setInitialTheme() {
-        const savedTheme = localStorage.getItem("theme");
+      async function setInitialTheme() {
+        const savedTheme = await localStorage.getItem("theme");
         document.body.setAttribute("data-theme", savedTheme || "cupcake");
       }
       document.addEventListener("DOMContentLoaded", setInitialTheme);
