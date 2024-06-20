@@ -106,7 +106,6 @@
         body.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
       }
-
       function setInitialTheme() {
         const savedTheme = localStorage.getItem("theme");
         document.body.setAttribute("data-theme", savedTheme || "cupcake");
