@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title><%= legoSet.name %></title>
+  </head>
+  <body data-theme="cupcake">
+    <%- include('partials/navbar', {page:''}) %>
+
+    <div class="container mx-auto h-auto">
+      <div class="hero bg-base-200 rounded-lg p-6">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold"><%= legoSet.name %></h1>
+            <p class="py-6">
+              Find below all details about the set: <%= legoSet.name %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <img
+            class="w-full h-auto rounded-lg mb-4 md:mb-0"
+            src="<%= legoSet.img_url %>"
+            alt="<%= legoSet.name %> image"
+          />
+        </div>
+        <div class="prose">
+          <div>
+            <p><strong>Set Name</strong>: <%= legoSet.name %></p>
+            <p><strong>Year Released</strong>: <%= legoSet.year %></p>
+            <p><strong>Theme</strong>: <%= legoSet.theme %></p>
+            <p><strong>Number of Parts</strong>: <%= legoSet.num_parts %></p>
+          </div>
+
+          <p id="quote"></p>
+          <p id="author" style="font-style: italic"></p>
+
+          <a
+            href="#"
+            onclick="history.back(); return false;"
+            class="btn btn-primary"
+            >Back</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <%- include('partials/footer', {page: '/lego/sets'}) %>
+  </body>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute("data-theme");
+      const newTheme = currentTheme === "cupcake" ? "night" : "cupcake";
+      body.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+    }
+    function setInitialTheme() {
+      const savedTheme = localStorage.getItem("theme");
+      document.body.setAttribute("data-theme", savedTheme || "cupcake");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setInitialTheme();
+      fetch("https://quotable.io/random")
+        .then((response) => response.json())
+        .then((data) => {
+          const quoteContent = document.getElementById("quote");
+          const quoteArthur = document.getElementById("author");
+          quoteContent.innerText = `"${data.content}"`;
+          quoteArthur.innerText = `-${data.author}`;
+        })
+        .catch((error) => {
+          console.error("Error fetching quote:", error);
+        });
+    });
+  </script>
+</html>
