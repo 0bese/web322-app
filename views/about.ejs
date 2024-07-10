@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" href="/lego-man.png" type="image/png" sizes="16x16" />
+    <title>About</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <%- include('partials/navbar', {page: '/about'}) %>
+
+    <!-- About section -->
+    <div>
+      <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">About me</h1>
+            <p class="py-6">
+              I am from Ghana, where my favorite food is fufu and groundnut
+              soup. Back home, I work as a pharmacist, but I am currently
+              studying computer programming at Seneca Polytechnic in Canada. I
+              have a diverse set of skills including React, Express, MongoDB,
+              PostgreSQL, C++, HTML, JavaScript, and React Native. Additionally,
+              I am passionate about technology and enjoy exploring new tools and
+              frameworks to enhance my development capabilities.
+              <br />
+              <br />
+              This semester, I am working on my WEB322 assignment, a project
+              built using Express, JavaScript, HTML, and styled with Tailwind
+              CSS and DaisyUI. This project will span the entire semester, with
+              continuous development and improvements. It aims to showcase my
+              ability to integrate different technologies and create a robust
+              web application. I am excited about this opportunity to apply my
+              knowledge in a practical setting and to further expand my
+              programming skills.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer', {page: '/about'}) %>
+    <script>
+      function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "cupcake" ? "night" : "cupcake";
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+      function setInitialTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        document.body.setAttribute("data-theme", savedTheme || "cupcake");
+      }
+      document.addEventListener("DOMContentLoaded", setInitialTheme);
+    </script>
+  </body>
+</html>
