@@ -2,7 +2,6 @@ require("dotenv").config();
 const Sequelize = require("sequelize");
 const setData = require("../data/setData");
 const themeData = require("../data/themeData");
-const maxDuration = 300;
 
 //stucture
 // themeData = {
@@ -201,5 +200,4 @@ module.exports = {
   deleteSet,
   Set,
   Theme,
-  maxDuration,
 };
