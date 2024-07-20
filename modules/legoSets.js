@@ -202,9 +202,3 @@ module.exports = {
   Set,
   Theme,
 };
-//console.log(getAllSets());
-//console.log(getSetByNum("001-1"));
-
-//console.log(getSetsByTheme("TECH"))
-
-//console.log(sets.length)
