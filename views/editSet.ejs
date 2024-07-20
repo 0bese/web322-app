@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" href="/lego-man.png" type="image/png" sizes="16x16" />
+    <title>Add New Set</title>
+</head>
+<body>
+     <!-- Navbar -->
+     <%- include('partials/navbar', {page: '/editSet'}) %>
+
+     <!-- Add new set section -->
+     <div class="container mx-auto">
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center">
+              <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Edit Set: <%= legoSet.name %></h1>
+                <p class="py-6">You can add a new set below. </p>
+              </div>
+            </div>
+        </div>
+
+        <br>
+
+
+        <div class="w-96 mx-auto" style="text-align: center;">
+            <form action="/lego/editSet" method="POST">
+                
+                <label for="name" class="input input-bordered flex items-center gap-2">
+                    Name
+                    <input type="text"  name="name" id="name" class="grow" value="<%= legoSet.name %>" required/>
+                  </label>
+            <br>
+            <label for="num_parts" class="input input-bordered flex items-center gap-2">
+                Number of Parts
+                <input type="number"  name="num_parts" id="num_parts" class="grow" value="<%= legoSet.num_parts %>" required/>
+              </label>         
+        
+            <br>
+            <label for="year" class="input input-bordered flex items-center gap-2">
+                Year
+                <input type="number"  name="year" id="year" class="grow" value="<%= legoSet.year %>" required/>
+              </label> 
+    
+            <br>
+            <label for="img_url" class="input input-bordered flex items-center gap-2">
+                Image URL
+                <input type="text"  name="img_url" id="img_url" class="grow" value="<%= legoSet.img_url %>" required />
+              </label>
+
+              <br>
+              <label for="set_num" class="input input-bordered flex items-center gap-2">
+                Set Number
+                <input type="text"  name="set_num" id="set_num" class="grow" value="<%= legoSet.set_num %>" required />
+              </label>    
+            <br>
+            
+            <label for="theme">
+            <select class="select select-bordered w-full" id="theme_id" name="theme_id" required>
+                <option disabled selected>Theme</option>
+                <% themes.forEach(theme => { %>
+                    <option <%= (legoSet.theme_id == theme.id) ? "selected" : "" %> value="<%= theme.id %>">
+                        <%= theme.name %>
+                    </option>
+                <% }) %>
+            </select>
+        </label>
+    
+            <br>
+          
+            <button class="btn btn-neutral mt-6" type="submit">Update Set</button>
+            <a href="/lego/deleteSet/<%= legoSet.set_num %>" class="btn btn-error text-white">Delete Set</a>
+    
+    
+        </form>
+    </div>
+</body>
+</html>

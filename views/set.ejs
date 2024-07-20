@@ -9,7 +9,7 @@
   <body data-theme="cupcake">
     <%- include('partials/navbar', {page:''}) %>
 
-    <div class="container mx-auto h-auto">
+    <div class="container mx-auto min-h-[90vh]">
       <div class="hero bg-base-200 rounded-lg p-6">
         <div class="hero-content text-center">
           <div class="max-w-md">
@@ -34,12 +34,19 @@
           <div>
             <p><strong>Set Name</strong>: <%= legoSet.name %></p>
             <p><strong>Year Released</strong>: <%= legoSet.year %></p>
-            <p><strong>Theme</strong>: <%= legoSet.theme %></p>
+            <p><strong>Theme</strong>: <%= legoSet.Theme.name %></p>
             <p><strong>Number of Parts</strong>: <%= legoSet.num_parts %></p>
           </div>
 
           <p id="quote"></p>
           <p id="author" style="font-style: italic"></p>
+
+          <a
+            class="btn btn-success"
+            href="/lego/editSet/<%= legoSet.set_num %>"
+          >
+            Edit
+          </a>
 
           <a
             href="#"
