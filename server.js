@@ -11,7 +11,7 @@
  *  Published URL: https://web322mylegoapp.vercel.app/
  *
  ********************************************************************************/
-
+"use server";
 const express = require("express");
 const legoData = require("./modules/legoSets");
 const path = require("path");
