@@ -30,7 +30,7 @@
                 
                 <label for="name" class="input input-bordered flex items-center gap-2">
                     Name
-                    <input type="text"  name="name" id="name" class="grow" placeholder="Eg. Technic" required/>
+                    <input type="text"  name="name" id="name" class="grow" placeholder="  Eg. Technic" required/>
                   </label>
             <br>
             <label for="num_parts" class="input input-bordered flex items-center gap-2">
@@ -132,6 +132,18 @@
         return true;
     }
 
+    function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "cupcake" ? "night" : "cupcake";
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+      function setInitialTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        document.body.setAttribute("data-theme", savedTheme || "cupcake");
+      }
+      document.addEventListener("DOMContentLoaded", setInitialTheme);
     
     </script>
 </body>
