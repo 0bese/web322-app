@@ -1,99 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="icon" href="/lego-man.png" type="image/png" sizes="16x16" />
-    <title>Set Collection</title>
-  </head>
-  <body data-theme="">
-    <!-- NavBar -->
-    <%- include('partials/navbar', {page: '/lego/addSets'}) %>
+    <title>Add New Set</title>
+</head>
+<body data-theme="">
+     <!-- Navbar -->
+     <%- include('partials/navbar', {page: '/lego/addSet'}) %>
 
-    <!-- Main -->
-    <div class="container min-h-screen flex justify-center mx-auto">
-      <div class="overflow-x-auto max-w-7xl">
-        <table class="table">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Theme</th>
-              <th>Year</th>
-              <th>Num_parts</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- row 1 -->
-            <% legoSet.map(set =>{ %>
-            <tr>
-              <td>
-                <div class="flex items-center gap-3">
-                  <div class="avatar">
-                    <div class="h-56 w-56 rounded-md">
-                      <img
-                        src="<%= set.img_url %>"
-                        alt="set"
-                        onerror="this.src='/noImage.jpg'; this.onerror=null;"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold sm:w-40"><%= set.name %></div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <a
-                  class="btn btn-active btn-neutral"
-                  href="/lego/sets?theme=<%= set.Theme.name %>"
-                  ><%= set.Theme.name %></a
-                >
-                <br />
-                <!-- <span class="badge badge-ghost badge-sm">
-              
-                </span> -->
-              </td>
-              <td><%= set.year %></td>
-              <td><%= set.num_parts %></td>
-              <th>
-                <a class="btn btn-outline" href="/lego/sets/<%= set.set_num %>"
-                  >Details</a
-                >
-              </th>
-            </tr>
-            <%}) %>
+     <!-- Add new set section -->
+     <div class="container mx-auto">
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center">
+              <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Add Set</h1>
+                <p class="py-6">You can add a new set below. </p>
+              </div>
+            </div>
+        </div>
 
-            <!-- foot -->
-          </tbody>
+        <br>
 
-          <tfoot>
-            <tr>
-              <th>Name</th>
-              <th>Theme</th>
-              <th>Year</th>
-              <th>Num_parts</th>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+
+        <div class="w-96 mx-auto" style="text-align: center;">
+            <form action="/lego/addSet" method="POST">
+                
+                <label for="name" class="input input-bordered flex items-center gap-2">
+                    Name
+                    <input type="text"  name="name" id="name" class="grow" placeholder="Eg. Technic" required/>
+                  </label>
+            <br>
+            <label for="num_parts" class="input input-bordered flex items-center gap-2">
+                Number of Parts
+                <input onchange="validateNumParts()" type="number"  name="num_parts" id="num_parts" class="grow" required/>
+              </label>         
+        
+            <br>
+            <label for="year" class="input input-bordered flex items-center gap-2 ">
+                Year
+                <input onchange="validateYear()" min="1900" type="number" name="year" id="year" class="grow" required/>
+              </label> 
+    
+            <br>
+            <label for="img_url" class="input input-bordered flex items-center gap-2">
+                Image URL
+                <input type="text"  name="img_url" id="img_url" class="grow" placeholder="Eg. https://www.example.com" required/>
+              </label>
+
+              <br>
+              <label for="set_num" class="input input-bordered flex items-center gap-2">
+                Set Number
+                <input onchange="validateSetNum()" type="text"  name="set_num" id="set_num" class="grow" placeholder="123-1" required/>
+              </label>
+            
+            <br>
+            
+            <label for="theme">
+            <select class="select select-bordered w-full" id="theme_id" name="theme_id" required>
+                <option value="" selected disabled>Theme</option>
+                <% themes.forEach(theme => { %>
+                    <option value="<%= theme.id %>"><%= theme.name %></option>
+                <% }) %>
+            </select>
+        </label>
+    
+            <br>
+            
+            <button class="btn btn-neutral mt-6" type="submit">Add Set</button>
+    
+    
+        </form>
     </div>
-    <!-- Footer -->
-    <%- include('partials/footer', {page: '/lego/sets'}) %>
     <script>
-      function toggleTheme() {
-        const body = document.body;
-        const currentTheme = body.getAttribute("data-theme");
-        const newTheme = currentTheme === "cupcake" ? "night" : "cupcake";
-        body.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-      }
-      function setInitialTheme() {
-        const savedTheme = localStorage.getItem("theme");
-        document.body.setAttribute("data-theme", savedTheme || "cupcake");
-      }
-      document.addEventListener("DOMContentLoaded", setInitialTheme);
+      function validateYear() {
+        const yearInput = document.getElementById('year');
+        const year = parseInt(yearInput.value, 10);
+
+        // Check if year is within a reasonable range
+        if (year < 1900 || year > new Date().getFullYear() + 1) {
+            alert('Please enter a valid year.');
+            yearInput.value = ''; // Clear the input field
+            yearInput.focus(); // Set focus back to the input field
+            return false;
+        }
+
+        // If validation passes, you can proceed with your logic
+        return true;
+    }
+
+    function validateSetNum() {
+        const setNumInput = document.getElementById('set_num').value.trim();
+        const parts = setNumInput.split('-');
+        function invalid(){
+          alert('Please enter a valid set number (e.g., 123-1).');
+          document.getElementById('set_num').value = ''; // Clear the input field
+          document.getElementById('set_num').focus(); // Set focus back to the input field
+          return false;
+        }
+        // Check if the set number matches the pattern "digits-digits"
+        if (parts[1].length > 1) {
+          invalid();
+        }
+
+        const part1 = parseInt(parts[0], 10);
+        const part2 = parseInt(parts[1], 10);
+
+        if (isNaN(part1) || isNaN(part2) || parts[1].length !== 1) {
+          invalid()
+        }
+
+        // If validation passes
+        return true;
+    }
+
+    function validateNumParts() {
+        const numPartsInput = document.getElementById('num_parts');
+        const numParts = parseInt(numPartsInput.value, 10);
+
+        // Check if numParts is a positive number
+        if ( numParts <= 0) {
+            alert('Please enter a valid number of parts.');
+            numPartsInput.value = ''; // Clear the input field
+            numPartsInput.focus(); // Set focus back to the input field
+            return false;
+        }
+
+        // If validation passes
+        return true;
+    }
+
+    
     </script>
-  </body>
+</body>
 </html>
