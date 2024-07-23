@@ -7,7 +7,7 @@
     <link rel="icon" href="/lego-man.png" type="image/png" sizes="16x16" />
     <title>Add New Set</title>
 </head>
-<body>
+<body data-theme="">
      <!-- Navbar -->
      <%- include('partials/navbar', {page: '/editSet'}) %>
 
@@ -76,5 +76,19 @@
     
         </form>
     </div>
+    <script>
+      function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "cupcake" ? "night" : "cupcake";
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+      function setInitialTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        document.body.setAttribute("data-theme", savedTheme || "cupcake");
+      }
+      document.addEventListener("DOMContentLoaded", setInitialTheme);
+    </script>
 </body>
 </html>
