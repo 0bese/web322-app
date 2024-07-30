@@ -53,6 +53,13 @@ app.get("/login", async (req, res) => {
     year: year,
   });
 });
+app.get("/register", async (req, res) => {
+  await res.render("register", {
+    userName: "somtin",
+    errorMessage: "yawa dey",
+    year: year,
+  });
+});
 
 app.get("/lego/sets", async (req, res) => {
   try {
