@@ -1,6 +1,6 @@
 # web322-app
 
-run npm i
+run ```npm i```
 
 run ```npm run tw:build```
 
