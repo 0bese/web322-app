@@ -15,15 +15,27 @@
 const express = require("express");
 const legoData = require("./modules/legoSets");
 const path = require("path");
+const authData = require("./modules/auth-service.js");
 const app = express();
 
 const API_PORT = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, "public")));
+const year = new Date().getFullYear();
 //set view for ejs
 app.set("view engine", "ejs");
-
 app.use(express.urlencoded({ extended: true }));
+
+// legoData.initialize()
+//   .then(authData.initialize)
+//   .then(() => {
+//     app.listen(HTTP_PORT, () => {
+//       console.log(`app listening on: ${HTTP_PORT}`);
+//     });
+//   })
+//   .catch(err => {
+//     console.log(`unable to start server: ${err}`);
+//   });
 
 //routes
 app.get("/", async (req, res) => {
@@ -32,6 +44,14 @@ app.get("/", async (req, res) => {
 
 app.get("/about", async (req, res) => {
   await res.render("about");
+});
+
+app.get("/login", async (req, res) => {
+  await res.render("login", {
+    userName: "somtin",
+    errorMessage: "yawa dey",
+    year: year,
+  });
 });
 
 app.get("/lego/sets", async (req, res) => {
