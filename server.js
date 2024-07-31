@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 });
 
 function ensureLogin(req, res, next) {
-  if (!req.session) {
+  if (!req.session.seenyou) {
     res.redirect("/login");
   } else {
     next();
@@ -129,11 +129,11 @@ app.get("/userHistory", ensureLogin, (req, res) => {
 });
 
 //routes
-app.get("/", async (req, res) => {
+app.get("/", ensureLogin, async (req, res) => {
   await res.render("home");
 });
 
-app.get("/about", async (req, res) => {
+app.get("/about", ensureLogin, async (req, res) => {
   await res.render("about");
 });
 
