@@ -30,7 +30,7 @@ app.use(
     cookieName: "session",
     secret: process.env.SESSION_SECRET,
     duration: 15 * 60 * 1000,
-    activeDuration: 1000 * 60,
+    activeDuration: 1000 * 60 * 60,
   })
 );
 
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 });
 
 function ensureLogin(req, res, next) {
-  if (!req.session.seenyou) {
+  if (!req.session.user) {
     res.redirect("/login");
   } else {
     next();
