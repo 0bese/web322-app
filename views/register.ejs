@@ -23,23 +23,27 @@
         </p>
       </div>
     </div>
-    <div class="flex justify-center self-center z-10">
-      <div class="p-12 bg-white mx-auto rounded-2xl w-100">
+    <div class="flex flex-col justify-center self-center z-10">
+      <form
+        action="/register"
+        method="POST"
+        class="p-12 bg-white mx-auto rounded-2xl w-100"
+      >
         <div class="mb-4">
           <h3 class="font-semibold text-2xl text-gray-800">Sign Up</h3>
-          <p class="text-gray-500">Please create an account.</p>
+          <p class="text-gray-500">Please provide your credentials</p>
         </div>
         <div class="space-y-5">
           <div class="space-y-2">
             <label class="text-sm font-medium text-gray-700 tracking-wide"
-              >Username<span class="text-red-700">*</span></label
+              >User Name<span class="text-red-700">*</span></label
             >
             <input
               class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-              type=""
-              required
-              name="userName"
+              type="text"
               placeholder="User Name"
+              name="userName"
+              required
             />
           </div>
           <div class="space-y-2">
@@ -48,9 +52,10 @@
             >
             <input
               class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-              type=""
+              type="text"
+              placeholder="Email Address"
+              name="email"
               required
-              placeholder="mail@gmail.com"
             />
           </div>
           <div class="space-y-2">
@@ -60,28 +65,44 @@
             <input
               class="w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
               type="password"
+              placeholder="Password"
               name="password"
-              placeholder="Enter your password"
               required
             />
           </div>
           <div class="space-y-2">
             <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-              Verify password<span class="text-red-700">*</span>
+              Confirm password<span class="text-red-700">*</span>
             </label>
             <input
               class="w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
               type="password"
+              placeholder="Repeat password"
               name="password2"
-              placeholder="Enter your password"
               required
             />
           </div>
 
+          <!-- <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                      <input id="remember_me" name="remember_me" type="checkbox"
+                          class="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" />
+                      <label for="remember_me" class="ml-2 block text-sm text-gray-800">
+                          Remember me
+                      </label>
+                  </div>-->
+          <div class="flex justify-between text-sm">
+            <p>Already own an account?</p>
+            <a href="/login" class="text-green-400 hover:text-green-500">
+              Sign in
+            </a>
+          </div>
+          <!-- </div>  -->
           <div>
             <button
               type="submit"
-              class="w-full flex mt-4 justify-center bg-green-400 hover:bg-green-500 text-gray-100 p-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500"
+              value="Register"
+              class="w-full flex justify-center bg-green-400 hover:bg-green-500 text-gray-100 p-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500"
             >
               Sign up
             </button>
@@ -89,18 +110,39 @@
         </div>
         <div class="pt-5 text-center text-gray-400 text-xs">
           <span>
-            Copyright © <%= year %>
+            Copyright © 2024
             <a
-              href="https://codepen.io/uidesignhub"
+              href="https://www.github.com/0bese"
               rel=""
               target="_blank"
-              title="Ajimon"
+              title="legoData"
               class="text-green hover:text-green-500"
               >Lego Collection</a
             ></span
           >
         </div>
+      </form>
+      <% if (errorMessage) { %>
+      <!-- <div id="notificationContainer" aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6"> -->
+      <div role="alert" class="alert alert-error relative w-full z-10">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 shrink-0 stroke-current"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span><%= errorMessage %></span>
       </div>
+      <!-- </div> -->
+
+      <% } %>
     </div>
   </div>
 </div>

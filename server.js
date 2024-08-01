@@ -1,5 +1,5 @@
 /********************************************************************************
- *  WEB322 – Assignment 05
+ *  WEB322 – Assignment 6
  *
  *  I declare that this assignment is my own work in accordance with Seneca's
  *  Academic Integrity Policy:
@@ -21,7 +21,6 @@ const clientSessions = require("client-sessions");
 const API_PORT = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, "public")));
-const year = new Date().getFullYear();
 //set view for ejs
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -48,24 +47,11 @@ function ensureLogin(req, res, next) {
   }
 }
 
-legoData
-  .initialize()
-  .then(authData.initialize)
-  .then(() => {
-    app.listen(API_PORT, () => {
-      console.log(`app listening on: ${API_PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.log(`unable to start server: ${err}`);
-  });
-
 //authentication
 
 app.get("/login", async (req, res) => {
   await res.render("login", {
     errorMessage: null,
-    year: year,
   });
 });
 
@@ -95,7 +81,6 @@ app.get("/register", async (req, res) => {
   await res.render("register", {
     errorMessage: null,
     successMessage: null,
-    year: year,
   });
 });
 
@@ -237,3 +222,15 @@ app.use((req, res, next) => {
     message: "I'm sorry, we're unable to find what you're looking for.",
   });
 });
+
+legoData
+  .initialize()
+  .then(authData.initialize)
+  .then(() => {
+    app.listen(API_PORT, () => {
+      console.log(`app listening on: ${API_PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(`unable to start server: ${err}`);
+  });

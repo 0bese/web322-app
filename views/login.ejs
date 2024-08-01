@@ -16,7 +16,7 @@
     background-image: url(https://images.pexels.com/photos/8923970/pexels-photo-8923970.jpeg);
   ">
         <div class="absolute bg-gradient-to-b from-green-500 to-green-400 opacity-75 inset-0 z-0"></div>
-        <form action="/login" method="POST" class="min-h-screen sm:flex shrink-0 sm:flex-row mx-auto justify-center relative">
+        <div action="/login" method="POST" class="min-h-screen sm:flex shrink-0 sm:flex-row mx-auto justify-center relative">
             <div class="flex-col flex self-center p-10 sm:max-w-3xl xl:max-w-2xl z-10">
                 <div class="self-start hidden lg:flex lg:min-w-[30%] flex-col text-white">
                     <img src="" class="mb-3" />
@@ -27,22 +27,22 @@
                     </p>
                 </div>
             </div>
-            <div class="flex justify-center self-center z-10">
-                <div class="p-12 bg-white mx-auto rounded-2xl w-100">
+            <div class="flex flex-col justify-center self-center z-10">
+                <form action="/login" method="POST" class="p-12 bg-white mx-auto rounded-2xl w-100">
                     <div class="mb-4">
                         <h3 class="font-semibold text-2xl text-gray-800">Log In</h3>
                         <p class="text-gray-500">Please provide your credentials</p>
                     </div>
                     <div class="space-y-5">
                         <div class="space-y-2">
-                            <label class="text-sm font-medium text-gray-700 tracking-wide">User Name</label>
+                            <label class="text-sm font-medium text-gray-700 tracking-wide">User Name<span class="text-red-700">*</span></label>
                             <input
                                 class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                                type="text" placeholder="User Name" name="userName" required/>
                         </div>
                         <div class="space-y-2">
                             <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-                                Password
+                                Password<span class="text-red-700">*</span>
                             </label>
                             <input
                                 class="w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
@@ -56,65 +56,51 @@
                                 <label for="remember_me" class="ml-2 block text-sm text-gray-800">
                                     Remember me
                                 </label>
-                            </div>
-                            <div class="text-sm">
-                                <a href="#" class="text-green-400 hover:text-green-500">
-                                    Forgot your password?
+                            </div>-->
+                            <div class="flex justify-between text-sm">
+                                <p>New here? Create an account</p>
+                                <a href="/register" class="text-green-400 hover:text-green-500">
+                                    Sign up
                                 </a>
                             </div>
-                        </div> -->
+                        <!-- </div>  -->
                         <div>
                             <button type="submit"
                                 value="Login"
                                 class="w-full flex justify-center bg-green-400 hover:bg-green-500 text-gray-100 p-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
-                                Login in
+                                Log in
                             </button>
                         </div>
                     </div>
                     <div class="pt-5 text-center text-gray-400 text-xs">
                         <span>
-                            Copyright © <%= year %>
-                                <a href="https://codepen.io/uidesignhub" rel="" target="_blank" title="Ajimon"
+                            Copyright © 2024
+                                <a href="https://www.github.com/0bese" rel="" target="_blank" title="legoData"
                                     class="text-green hover:text-green-500">Lego Collection</a></span>
                     </div>
-                </div>
+                </form>
+                <% if (errorMessage) { %>
+                    <!-- <div id="notificationContainer" aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6"> -->
+                        <div role="alert"  class="alert alert-error relative w-full z-10">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-6 w-6 shrink-0 stroke-current"
+                              fill="none"
+                              viewBox="0 0 24 24">
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span><%= errorMessage %></span>
+                        </div>
+                    <!-- </div> -->
+                    
+                    <% } %>
             </div>
-            <% if (!errorMessage) { %>
-                <div id="notificationContainer" aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
-                    <div role="alert" class="alert alert-error w-[25%] transition transform ease-out duration-300 opacity-0 sm:opacity-100 sm:translate-x-0 translate-y-2 sm:translate-y-0" id="notification">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-6 w-6 shrink-0 stroke-current"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>Error! Task failed successfully.</span>
-                    </div>
-                </div>
-                
-                <script>
-                    // Timeout to remove notification after 5 seconds
-                    setTimeout(function() {
-                        var notification = document.getElementById('notification');
-                        if (notification) {
-                            notification.classList.remove('opacity-100', 'translate-y-0', 'sm:translate-x-0');
-                            notification.classList.add('opacity-0', 'translate-y-2', 'sm:translate-x-2');
-                
-                            setTimeout(function() {
-                                notification.parentNode.removeChild(notification);
-                            }, 300); // Ensure this matches the duration of your transition (300ms in this case)
-                        }
-                    }, 5000); // 5000 milliseconds = 5 seconds
-                </script>
-                <% } %>
-                
-
-        </form>
+        </div>
+       
     </div>
 
     </div>
