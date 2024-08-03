@@ -22,6 +22,7 @@ const { DB_HOST, DB_DATABASE, DB_USER, DB_PASSWORD } = process.env;
 const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   host: DB_HOST,
   dialect: "postgres",
+  dialectModule: require('pg'),
   port: 5432,
   dialectOptions: {
     ssl: { rejectUnauthorized: false },
