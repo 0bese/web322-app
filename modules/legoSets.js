@@ -28,9 +28,6 @@ const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
     ssl: { rejectUnauthorized: false },
   },
    query: { raw: true },
-  define: {
-    timestamps: false,
-  },
 });
 
 sequelize
