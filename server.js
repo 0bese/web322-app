@@ -223,6 +223,8 @@ app.use((req, res, next) => {
   });
 });
 
+module.exports = app;
+
 legoData
   .initialize()
   .then(authData.initialize)
